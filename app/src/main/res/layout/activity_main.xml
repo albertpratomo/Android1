@@ -28,6 +28,8 @@
 
     <Button
         android:id="@+id/button"
+        android:textColor="#fff"
+        android:background="@drawable/bg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -45,6 +47,8 @@
 
     <Button
         android:id="@+id/button2"
+        android:textColor="#fff"
+        android:background="@drawable/bg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
