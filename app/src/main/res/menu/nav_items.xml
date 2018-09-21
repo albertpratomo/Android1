@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/baseline_home_white_24dp"
+        android:title="@string/nav_home" />
+    <item
+        android:icon="@drawable/baseline_date_range_white_24dp"
+        android:title="@string/nav_schedule" />
+    <item
+        android:icon="@drawable/baseline_speaker_notes_white_24dp"
+        android:title="@string/nav_news" />
+</menu>
