@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="120dp"
+    android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
@@ -12,6 +12,6 @@
         android:id="@+id/webv_fr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="50dp" />
+        android:paddingBottom="20dp" />
 
 </FrameLayout>

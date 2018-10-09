@@ -31,7 +31,7 @@ import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity implements TokenFragment.OnFragmentInteractionListener{
 
-    private String token;
+    public String token;
     private TextView tv;
 
     private android.support.v7.widget.Toolbar mMainToolbar;
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements TokenFragment.OnF
     @Override
     public void onFragmentInteraction(String token) {
         this.token = token;
-        tv.setText(token);
         setFragment(homeFragment);
     }
 
@@ -54,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements TokenFragment.OnF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tv = findViewById(R.id.textView);
 
         mMainToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.main_toolbar);
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
@@ -103,56 +100,5 @@ public class MainActivity extends AppCompatActivity implements TokenFragment.OnF
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void getSchedule(View v) {
-        new JSONTask().execute();
-    }
-
-    public class JSONTask extends AsyncTask<String, Void, List<String>> {
-        protected List<String> doInBackground(String... params){
-            URL url = null;
-            String s=null;
-            List<String> subjectList = null;
-            try {
-                url = new URL("https://api.fhict.nl/schedule/me");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestProperty("Accept", "application/json");
-                connection.setRequestProperty("Authorization", "Bearer " + token);
-                connection.connect();
-                InputStream is = connection.getInputStream();
-                Scanner scn = new Scanner(is);
-                s = scn. useDelimiter("\\Z").next();
-                JSONObject jsonObject = new JSONObject(s);
-
-                JSONArray jsonArray = jsonObject.getJSONArray("data");
-                subjectList = new ArrayList<>();
-                for(int i=0;i<jsonArray.length();i++) {
-                    // each array element is an object
-                    JSONObject scheduleObject = jsonArray.getJSONObject(i);
-                    // from each object, get field "subject", which is a string
-                    String subName = scheduleObject.getString("subject");
-                    // add each "subject" string to list
-                    subjectList.add(subName);
-                }
-
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return subjectList;
-        }
-        protected void onPostExecute(List<String> result){
-            tv.setText(result.get(1));
-
-            for(int i = 0; i < result.size(); i++) {
-                System.out.println(result.get(i));
-            }
-        }
-
     }
 }
